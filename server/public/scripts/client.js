@@ -65,15 +65,13 @@ function renderBooks(books) {
   }
 }
 
-//<td><button class = "delete" data-id ="${book[i].id}" >Delete</button></td>
-
 function deleteBook(bookId){
   $.ajax({
     method: 'DELETE',
     url:`/books/${bookId}`
   }).then(response => {
     console.log('See ya book!!');
-    renderBooks();
+    refreshBooks();
   }).catch(err => {
     console.log(err);
   })
