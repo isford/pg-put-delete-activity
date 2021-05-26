@@ -59,7 +59,7 @@ function renderBooks(books) {
       <tr>
         <td>${book.title}</td>
         <td>${book.author}</td>
-        <td><button class = "delete" data-id =${book.id} >Delete</button></td>
+        <td><button class = "delete" data-id ="${book.id}" >Delete</button></td>
       </tr>
     `);
   }
@@ -67,9 +67,20 @@ function renderBooks(books) {
 
 //<td><button class = "delete" data-id ="${book[i].id}" >Delete</button></td>
 
+function deleteBook(bookId){
+  $.ajax({
+    method: 'DELETE',
+    url:`/books/${bookId}`
+  }).then(response => {
+    console.log('See ya book!!');
+    renderBooks();
+  }).catch(err => {
+    console.log(err);
+  })
+}
 
 function deleteBookHandler(){
   console.log('Delete button clicked');
+  deleteBook($(this).data("id"));
 }
 
-//function deleteBook(bookId)

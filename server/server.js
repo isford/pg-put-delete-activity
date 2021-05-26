@@ -10,46 +10,58 @@ app.use('/books', booksRouter);
 // Serve back static files by default
 app.use(express.static('server/public'))
 
-app.get('/books', (req, res) => {
-    // retrieve all songs from the DB
-    const queryText = `SELECT * FROM "books";`
+// app.get('/books', (req, res) => {
+//     // retrieve all songs from the DB
+//     const queryText = `SELECT * FROM "books";`
 
-    //send query to DB
-    // promise
-     pool.query(queryText)
-    .then( (result) => {
-        console.log(result.rows);
-        res.send(result.rows);
-    }).catch( (err) => {
-        console.log(err);
-        res.sendStatus(500);
-    })
-    //res.send(artistList);
-});
+//     //send query to DB
+//     // promise
+//      pool.query(queryText)
+//     .then( (result) => {
+//         console.log(result.rows);
+//         res.send(result.rows);
+//     }).catch( (err) => {
+//         console.log(err);
+//         res.sendStatus(500);
+//     })
+//     //res.send(artistList);
+// });
 
-app.post('/books', (req, res) => {
-    // musicLibrary.push(req.body);
+// app.post('/books', (req, res) => {
+//     // musicLibrary.push(req.body);
 
-    console.log('req.body', req.body)
-    // QUERY SANITIZED
-    let queryText = `INSERT INTO "books" ("title", "author", "published", "isRead")
-    VALUES ($1, $2, $3, $4);`
+//     console.log('req.body', req.body)
+//     // QUERY SANITIZED
+//     let queryText = `INSERT INTO "books" ("title", "author", "published", "isRead")
+//     VALUES ($1, $2, $3, $4);`
 
-    let values = [req.body.title, req.body.author, req.body.published, req.body.isRead]
+//     let values = [req.body.title, req.body.author, req.body.published, req.body.isRead]
     
-    pool.query(queryText, values)
-    .then( (result) => {
-        //only 100% sure that the query is done
-        res.sendStatus(201);
+//     pool.query(queryText, values)
+//     .then( (result) => {
+//         //only 100% sure that the query is done
+//         res.sendStatus(201);
 
-    }).catch( err => {
-        console.log(err);
-        res.sendStatus(500);
-    })
+//     }).catch( err => {
+//         console.log(err);
+//         res.sendStatus(500);
+//     })
 
-});
+// });
 
-
+// app.delete('/:id', (req, res) => {
+//   const itemToDelete = req.params.id;
+//   const queryString = `DELETE FROM "books" WHERE "books".id = $1;`;
+//    pool.query (queryString,[itemToDelete])       
+//         .then((response) => {
+//             console.log(`We deleted book with ID ${itemToDelete}`);
+//             res.sendStatus(200)
+//         })
+//         .catch (err => {
+//             console.log('You messed up', err);
+//             res.sendStatus(500);
+//         });   
+// })
 
 
 // Start listening for requests on a specific port
