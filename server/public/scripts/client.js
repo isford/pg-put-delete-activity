@@ -94,7 +94,7 @@ function readBookHandler(){
 // function iReadIt(bookId, voteDirection) {
 //     $.ajax({
 //         method: 'PUT',
-//         url: `/books/${songId}`,
+//         url: `/books/${bookId}`,
 //         data: {
 //             direction: voteDirection
 //         }

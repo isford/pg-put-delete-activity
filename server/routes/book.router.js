@@ -41,7 +41,7 @@ router.post('/',  (req, res) => {
 router.put('/:id', (req, res) => {
     const bookId = req.params.id;
 
-    // Change the rank of the song by the user ...
+    // Change the rank of the book by the user ...
     // expected values = 'up' OR 'down';
     let readIt = req.body.readIt;
 

@@ -11,7 +11,7 @@ app.use('/books', booksRouter);
 app.use(express.static('server/public'))
 
 // app.get('/books', (req, res) => {
-//     // retrieve all songs from the DB
+//     // retrieve all books from the DB
 //     const queryText = `SELECT * FROM "books";`
 
 //     //send query to DB
