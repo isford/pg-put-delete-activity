@@ -59,7 +59,9 @@ function renderBooks(books) {
       <tr>
         <td>${book.title}</td>
         <td>${book.author}</td>
+        <td>${book.isRead}</td>
         <td><button class = "delete" data-id ="${book.id}" >Delete</button></td>
+        <td><button class = "read" data-id ="${book.id}" >I Read This One!</button></td>
       </tr>
     `);
   }
