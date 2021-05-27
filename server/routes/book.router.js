@@ -39,32 +39,30 @@ router.post('/',  (req, res) => {
 // Request must include a parameter indicating what book to update - the id
 // Request body must include the content to update - the status
 router.put('/:id', (req, res) => {
-    const songId = req.params.id;
+    const bookId = req.params.id;
 
     // Change the rank of the song by the user ...
     // expected values = 'up' OR 'down';
-    let direction = req.body.direction;
+    let readIt = req.body.readIt;
 
     let queryString = '';
 
-    if (direction === 'up') {
-        queryString = 'UPDATE "songs" SET "rank"=rank-1 WHERE "songs".id = $1;';
-    } else if(direction === 'down') {
-        queryString = 'UPDATE "songs" SET "rank"=rank+1 WHERE "songs".id = $1;';
+    if (readIt === false) {
+        queryString = 'UPDATE "books" SET "isRead"=NOT "isRead" WHERE "books".id = $1;';
+    } else if(readIt === true) {
+        queryString = 'UPDATE "books" SET "isRead"=NOT "isRead" WHERE "books".id = $1;';
     } else {
-        // If the direction is somehow not what we expect, we reject the response and send
-        // back a 500 error.
         res.sendStatus(500);
         return; // early exit since it's an error!
     }
 
-    pool.query(queryString, [songId])
+    pool.query(queryString, [bookId])
         .then(response => {
             console.log(response.rowCount);
             res.sendStatus(202);
         })
         .catch(err => {
-            console.log('This is frustrating.', err);
+            console.log(err);
             res.sendStatus(500);
         });
 })

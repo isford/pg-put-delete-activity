@@ -9,6 +9,8 @@ function addClickHandlers() {
 
   $('#bookShelf').on('click', '.delete', deleteBookHandler)
   // TODO - Add code for edit & delete buttons
+
+  $('#bookShelf').on('click', '.read', readBookHandler)
 }
 
 function handleSubmit() {
@@ -61,7 +63,7 @@ function renderBooks(books) {
         <td>${book.author}</td>
         <td>${book.isRead}</td>
         <td><button class = "delete" data-id ="${book.id}" >Delete</button></td>
-        <td><button class = "read" data-id ="${book.id}" >I Read This One!</button></td>
+        <td><button class = "read" data-id ="${book.id}" >Toggle Read Status</button></td>
       </tr>
     `);
   }
@@ -84,3 +86,25 @@ function deleteBookHandler(){
   deleteBook($(this).data("id"));
 }
 
+function readBookHandler(){
+  console.log('Read button clicked');
+  //iReadIt($(this).data("id"), "up");
+}
+
+// function iReadIt(bookId, voteDirection) {
+//     $.ajax({
+//         method: 'PUT',
+//         url: `/books/${songId}`,
+//         data: {
+//             direction: voteDirection
+//         }
+//     })
+//     .then(response => {
+//         console.log('#IVoted');
+//         getMusicData();
+//     })
+//     .catch(err => {
+//         console.log(`No votes allowed.`);
+//         alert('There was a problem with your ballot.');
+//     });
+// }
