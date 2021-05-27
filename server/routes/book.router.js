@@ -43,14 +43,12 @@ router.put('/:id', (req, res) => {
 
     // Change the rank of the book by the user ...
     // expected values = 'up' OR 'down';
-    let readIt = req.body.readIt;
+    let readIt = req.body.isRead;
 
     let queryString = '';
 
-    if (readIt === false) {
-        queryString = 'UPDATE "books" SET "isRead"=NOT "isRead" WHERE "books".id = $1;';
-    } else if(readIt === true) {
-        queryString = 'UPDATE "books" SET "isRead"=NOT "isRead" WHERE "books".id = $1;';
+    if (readIt === 'true') {
+        queryString = 'UPDATE "books" SET "isRead"= true WHERE "books".id = $1;';
     } else {
         res.sendStatus(500);
         return; // early exit since it's an error!

@@ -88,23 +88,24 @@ function deleteBookHandler(){
 
 function readBookHandler(){
   console.log('Read button clicked');
-  //iReadIt($(this).data("id"), "up");
+  iReadIt($(this).data("id"), "false");
 }
 
-// function iReadIt(bookId, voteDirection) {
-//     $.ajax({
-//         method: 'PUT',
-//         url: `/books/${bookId}`,
-//         data: {
-//             direction: voteDirection
-//         }
-//     })
-//     .then(response => {
-//         console.log('#IVoted');
-//         getMusicData();
-//     })
-//     .catch(err => {
-//         console.log(`No votes allowed.`);
-//         alert('There was a problem with your ballot.');
-//     });
-// }
+function iReadIt(bookId) {
+    $.ajax({
+        method: 'PUT',
+        url: `/books/${bookId}`,
+        data: {
+            isRead: true
+        }
+    })
+    .then(response => {
+
+        refreshBooks();
+    })
+    .catch(err => {
+        console.log(`YOU/'RE STILL WRONG IAN`);
+        alert('MISTAKES WERE MADE');
+        console.log(err);
+    });
+}
